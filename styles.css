@@ -43,29 +43,17 @@ button {
   background:
     linear-gradient(180deg, rgba(4, 29, 25, .06), rgba(4, 22, 20, .32)),
     url("./assets/duanwu-premium-bg.webp") center / cover no-repeat,
-    linear-gradient(160deg, #155a45 0%, #083a32 44%, #041b18 100%);
+    linear-gradient(180deg, #114f40 0%, #0a332e 42%, #061d19 100%);
   box-shadow: 0 0 0 1px rgba(255, 255, 255, .06), var(--stage-glow);
   touch-action: manipulation;
   user-select: none;
-}
-
-.stage::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 50% 36%, rgba(255, 234, 168, .18), transparent 25%),
-    linear-gradient(130deg, transparent 0 18%, rgba(244, 217, 141, .1) 18.2%, transparent 18.8% 100%),
-    linear-gradient(42deg, transparent 0 62%, rgba(244, 217, 141, .08) 62.2%, transparent 62.8% 100%);
-  mix-blend-mode: screen;
 }
 
 .screen {
   position: absolute;
   inset: 0;
   display: none;
-  padding: 3.5vh 5.4vw;
+  padding: 5.2vh 5.4vw;
 }
 
 .screen.is-active {
@@ -87,9 +75,8 @@ button {
   background-image:
     linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px),
     linear-gradient(0deg, rgba(255, 255, 255, .025) 1px, transparent 1px);
-  background-size: 92px 92px;
-  opacity: .44;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, .58), transparent 82%);
+  background-size: 76px 76px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, .75), transparent 84%);
 }
 
 .ambient {
@@ -115,6 +102,25 @@ button {
   border-color: rgba(255, 248, 231, .18);
 }
 
+.brand-logo-card {
+  width: 66%;
+  height: 6.2vh;
+  margin: 0 auto 2vh;
+  padding: .75vh 1.8vh;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .98), rgba(250, 246, 236, .95));
+  border: 1px solid rgba(244, 217, 141, .5);
+  border-radius: 8px;
+  box-shadow: 0 18px 52px rgba(0, 0, 0, .24), 0 0 0 1px rgba(244, 217, 141, .28);
+}
+
+.brand-logo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .brand-row {
   display: flex;
   align-items: center;
@@ -123,35 +129,6 @@ button {
   color: rgba(255, 248, 231, .76);
   font-size: clamp(15px, 1.34vh, 34px);
   letter-spacing: 0;
-}
-
-.brand-logo-card,
-.result-logo,
-.game-logo {
-  display: grid;
-  place-items: center;
-  background: rgba(255, 255, 255, .96);
-  border: 1px solid rgba(244, 217, 141, .5);
-  box-shadow: 0 18px 42px rgba(0, 0, 0, .24);
-}
-
-.brand-logo-card {
-  width: 74%;
-  height: 6.8vh;
-  margin: 0 auto 1.8vh;
-  padding: .9vh 2vh;
-  border-radius: 8px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, .98), rgba(250, 246, 236, .95));
-  box-shadow: 0 18px 52px rgba(0, 0, 0, .24), 0 0 0 1px rgba(244, 217, 141, .28);
-}
-
-.brand-logo-card img,
-.result-logo img,
-.game-logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
 }
 
 .seal {
@@ -171,7 +148,7 @@ button {
 }
 
 .hero-copy {
-  margin-top: 2.7vh;
+  margin-top: 3vh;
   text-align: center;
 }
 
@@ -193,71 +170,32 @@ h2 {
 
 h1 {
   margin-top: 1.2vh;
-  font-size: clamp(42px, 5.45vh, 132px);
+  font-size: clamp(48px, 6.4vh, 154px);
   color: #fff9df;
   text-shadow: 0 3px 0 rgba(87, 55, 19, .18), 0 22px 52px rgba(0, 0, 0, .34), 0 0 26px rgba(244, 217, 141, .24);
 }
 
 .subtitle {
   width: 80%;
-  margin: 1.4vh auto 0;
+  margin: 2.2vh auto 0;
   color: rgba(255, 248, 231, .82);
   font-size: clamp(18px, 1.9vh, 44px);
   line-height: 1.55;
 }
 
-.start-reward-card {
-  width: 86%;
-  margin: 2.2vh auto 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: .9vh;
-  padding: 1vh;
-  border: 1px solid rgba(244, 217, 141, .45);
-  background:
-    linear-gradient(180deg, rgba(255, 248, 231, .14), rgba(255, 248, 231, .05)),
-    rgba(6, 29, 25, .52);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 20px 56px rgba(0, 0, 0, .28), inset 0 1px rgba(255, 255, 255, .12);
-  border-radius: 8px;
-}
-
-.start-reward-card div {
-  min-height: 6.8vh;
-  display: grid;
-  align-content: center;
-  gap: .45vh;
-  padding: .8vh;
-  background: linear-gradient(180deg, rgba(255, 248, 231, .13), rgba(255, 248, 231, .05));
-  border: 1px solid rgba(244, 217, 141, .28);
-  text-align: center;
-  border-radius: 6px;
-}
-
-.start-reward-card span {
-  color: rgba(255, 248, 231, .72);
-  font-size: clamp(11px, 1.1vh, 26px);
-  font-family: "PingFang SC", sans-serif;
-}
-
-.start-reward-card strong {
-  color: var(--gold-light);
-  font-size: clamp(13px, 1.38vh, 34px);
-}
-
 .product-altar {
   position: relative;
-  height: 28vh;
-  margin-top: 1.8vh;
+  height: 30vh;
+  margin-top: 2.6vh;
   isolation: isolate;
 }
 
 .product-altar::before {
   content: "";
   position: absolute;
-  left: 10%;
-  right: 10%;
-  bottom: 1.4vh;
+  left: 12%;
+  right: 12%;
+  bottom: 1.8vh;
   height: 7vh;
   z-index: 0;
   background:
@@ -265,39 +203,38 @@ h1 {
     linear-gradient(180deg, rgba(244, 217, 141, .16), rgba(9, 56, 47, .1));
   border: 1px solid rgba(244, 217, 141, .26);
   border-radius: 50%;
-  filter: blur(.1px);
 }
 
 .deco {
   position: absolute;
   z-index: 2;
   object-fit: contain;
-  filter: drop-shadow(0 18px 28px rgba(4, 31, 25, .4)) saturate(1.12);
+  filter: drop-shadow(0 18px 28px rgba(4, 31, 25, .35));
   pointer-events: none;
 }
 
 .deco-zongzi {
   width: 13vh;
   height: 13vh;
-  left: 4%;
-  bottom: 7.8vh;
+  left: 2%;
+  bottom: 9.2vh;
   transform: rotate(-16deg);
 }
 
 .deco-mugwort {
   width: 16vh;
   height: 16vh;
-  right: -1%;
-  top: 9.4vh;
-  opacity: .92;
-  transform: rotate(13deg);
+  right: -3%;
+  top: 10vh;
+  opacity: .9;
+  transform: rotate(17deg);
 }
 
 .deco-sachet {
   width: 10vh;
   height: 10vh;
-  left: 11%;
-  top: 4.4vh;
+  left: 10%;
+  top: 5vh;
   transform: rotate(-8deg);
 }
 
@@ -306,14 +243,14 @@ h1 {
   z-index: 1;
   left: 50%;
   top: 0;
-  width: 33%;
-  height: 22vh;
+  width: 31%;
+  height: 20vh;
   transform: translateX(-50%);
   overflow: hidden;
   border: 1px solid rgba(244, 217, 141, .72);
   background: var(--paper);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, .34);
-  opacity: .92;
+  box-shadow: var(--shadow);
+  opacity: .94;
 }
 
 .poster-frame img {
@@ -334,16 +271,17 @@ h1 {
   position: absolute;
   z-index: 4;
   left: 50%;
-  bottom: .2vh;
-  width: 68%;
-  height: 14.5vh;
+  right: auto;
+  bottom: 1vh;
+  width: 64%;
+  height: 13vh;
   display: grid;
   place-items: center;
   padding: .4vh;
   transform: translateX(-50%);
   background: transparent;
-  border: 0;
   box-shadow: none;
+  border: 0;
 }
 
 .bottle-card img {
@@ -362,7 +300,7 @@ h1 {
 .primary-action {
   position: absolute;
   left: 50%;
-  bottom: 13vh;
+  bottom: 10.8vh;
   width: 64%;
   transform: translateX(-50%);
   display: grid;
@@ -373,12 +311,6 @@ h1 {
     linear-gradient(180deg, #ffeab1, #d8a23c 72%, #b98226);
   border: 1px solid rgba(255, 241, 190, .72);
   box-shadow: 0 22px 54px rgba(0, 0, 0, .34), 0 0 42px rgba(244, 217, 141, .22), inset 0 1px rgba(255, 255, 255, .6);
-}
-
-.start-screen .primary-action {
-  top: 55vh;
-  bottom: auto;
-  z-index: 5;
 }
 
 .primary-action span,
@@ -398,7 +330,7 @@ h1 {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 2.8vh;
+  bottom: 6vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -421,11 +353,10 @@ h1 {
   display: flex;
   justify-content: space-between;
   gap: 2vh;
-  margin-top: 7.8vh;
 }
 
 .topbar > div {
-  width: 34%;
+  width: 28%;
   min-height: 7vh;
   display: grid;
   align-content: center;
@@ -433,17 +364,6 @@ h1 {
   border: 1px solid rgba(244, 217, 141, .42);
   background: rgba(6, 29, 25, .36);
   backdrop-filter: blur(10px);
-}
-
-.game-logo {
-  position: absolute;
-  left: 50%;
-  top: 2.6vh;
-  width: 58%;
-  height: 5.6vh;
-  padding: .7vh 1.4vh;
-  transform: translateX(-50%);
-  z-index: 3;
 }
 
 .metric-label {
@@ -460,10 +380,8 @@ h1 {
 }
 
 .game-title {
-  margin-top: 2.8vh;
+  margin-top: 4vh;
   text-align: center;
-  position: relative;
-  z-index: 2;
 }
 
 .game-title p {
@@ -479,7 +397,7 @@ h1 {
 
 .playfield {
   position: absolute;
-  inset: 25vh 0 18vh;
+  inset: 18vh 0 16vh;
   overflow: hidden;
 }
 
@@ -487,14 +405,14 @@ h1 {
   position: absolute;
   top: -9vh;
   left: 0;
-  width: 10.6vh;
-  height: 10.6vh;
+  width: 9.2vh;
+  height: 9.2vh;
   display: grid;
   place-items: center;
   color: var(--ink);
   border: 1px solid rgba(244, 217, 141, .76);
   background: transparent;
-  box-shadow: 0 18px 38px rgba(0, 0, 0, .28);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .26);
   font-family: "PingFang SC", sans-serif;
   font-size: clamp(14px, 1.26vh, 30px);
   font-weight: 800;
@@ -503,14 +421,6 @@ h1 {
   animation-name: fall;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
-}
-
-.falling.packet {
-  width: 11.8vh;
-  height: 14.6vh;
-  border: 0;
-  box-shadow: none;
-  filter: drop-shadow(0 18px 18px rgba(0, 0, 0, .26)) drop-shadow(0 0 18px rgba(216, 173, 85, .18));
 }
 
 .falling.leaf {
@@ -531,8 +441,8 @@ h1 {
 }
 
 .falling.product {
-  width: 16.8vh;
-  height: 11.6vh;
+  width: 12.8vh;
+  height: 9vh;
   padding: 0;
   background: transparent;
   border: 0;
@@ -573,56 +483,8 @@ h1 {
 .falling.leaf .item-label,
 .falling.zongzi .item-label,
 .falling.sachet .item-label,
-.falling.packet .item-label,
 .falling.product .item-label {
   display: none;
-}
-
-.unlock-card {
-  position: absolute;
-  left: 8vw;
-  right: 8vw;
-  top: 47vh;
-  z-index: 4;
-  padding: 1.8vh 2vh;
-  border: 1px solid rgba(244, 217, 141, .72);
-  background:
-    linear-gradient(180deg, rgba(255, 252, 238, .98), rgba(246, 229, 185, .97));
-  color: var(--ink);
-  box-shadow: 0 28px 70px rgba(0, 0, 0, .38), 0 0 42px rgba(244, 217, 141, .2);
-  border-radius: 8px;
-  opacity: 0;
-  transform: translateY(1.2vh) scale(.98);
-  transition: opacity .24s ease, transform .24s ease;
-  pointer-events: none;
-  text-align: center;
-}
-
-.unlock-card.is-visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-.unlock-card span {
-  color: var(--cinnabar);
-  font-family: "PingFang SC", sans-serif;
-  font-size: clamp(12px, 1.18vh, 28px);
-  font-weight: 800;
-}
-
-.unlock-card strong {
-  display: block;
-  margin-top: .5vh;
-  color: var(--jade-deep);
-  font-size: clamp(24px, 2.8vh, 68px);
-}
-
-.unlock-card p {
-  margin: .9vh auto 0;
-  width: 88%;
-  font-size: clamp(15px, 1.48vh, 36px);
-  line-height: 1.45;
-  font-weight: 700;
 }
 
 .falling.is-hit {
@@ -634,18 +496,15 @@ h1 {
   position: absolute;
   left: 5.4vw;
   right: 5.4vw;
-  bottom: 4.6vh;
+  bottom: 4.2vh;
   min-height: 9vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 2.6vh;
   border: 1px solid rgba(244, 217, 141, .44);
-  background:
-    linear-gradient(180deg, rgba(255, 248, 231, .11), rgba(255, 248, 231, .04)),
-    rgba(6, 29, 25, .54);
+  background: rgba(6, 29, 25, .48);
   backdrop-filter: blur(16px);
-  border-radius: 8px;
 }
 
 .collection-copy span {
@@ -662,39 +521,22 @@ h1 {
   font-size: clamp(22px, 2.6vh, 62px);
 }
 
-.milestone-track {
+.collection-dots {
   display: flex;
-  gap: 1.4vh;
+  gap: .9vh;
 }
 
-.milestone-track i {
-  position: relative;
-  width: 4.2vh;
-  height: 4.2vh;
+.collection-dots i {
+  width: 1.6vh;
+  height: 1.6vh;
   border-radius: 50%;
   border: 1px solid rgba(244, 217, 141, .5);
   background: rgba(255, 248, 231, .16);
 }
 
-.milestone-track i::after {
-  content: attr(data-label);
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: rgba(255, 248, 231, .78);
-  font-family: "PingFang SC", sans-serif;
-  font-weight: 800;
-  font-size: clamp(12px, 1.2vh, 28px);
-}
-
-.milestone-track i.is-lit {
+.collection-dots i.is-lit {
   background: var(--gold-light);
   box-shadow: 0 0 22px rgba(244, 217, 141, .72);
-}
-
-.milestone-track i.is-lit::after {
-  color: var(--ink);
 }
 
 .tip-card {
@@ -705,11 +547,9 @@ h1 {
   min-height: 8vh;
   padding: 1.6vh 2vh;
   border: 1px solid rgba(244, 217, 141, .52);
-  background:
-    linear-gradient(180deg, rgba(255, 252, 238, .98), rgba(248, 238, 204, .96));
+  background: rgba(255, 248, 231, .95);
   color: var(--ink);
   box-shadow: 0 24px 48px rgba(0, 0, 0, .28);
-  border-radius: 8px;
   opacity: 0;
   transform: translateY(1.4vh);
   transition: opacity .25s ease, transform .25s ease;
@@ -751,14 +591,7 @@ h1 {
 }
 
 .result-screen .eyebrow {
-  margin-top: 2.2vh;
-}
-
-.result-logo {
-  width: 72%;
-  height: 6.2vh;
-  margin: 1vh auto 0;
-  padding: .8vh 1.5vh;
+  margin-top: 5vh;
 }
 
 .result-screen h2 {

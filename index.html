@@ -16,31 +16,17 @@
       <div class="ambient ambient-a"></div>
       <div class="ambient ambient-b"></div>
       <div class="brand-logo-card">
-        <img src="./assets/gansu-yaotou-logo.png" alt="甘肃药业投资集团有限公司" width="526" height="112">
+        <img src="./assets/gansu-yaotou-logo.png" alt="甘肃药业投资集团有限公司" width="524" height="104">
       </div>
       <div class="brand-row">
-        <span class="seal">端午互动</span>
+        <span class="seal">甘肃药投</span>
         <span class="line"></span>
-        <span>产品宣传 · 企业形象 · 节日祝福</span>
+        <span>端午产品宣传互动试验</span>
       </div>
       <div class="hero-copy">
         <p class="eyebrow">宣肺止嗽合剂</p>
-        <h1>接住药投端午福包</h1>
-        <p class="subtitle">点亮红包，解锁企业名片、产品名片和端午祝福。</p>
-      </div>
-      <div class="start-reward-card">
-        <div>
-          <span>收集 3 个</span>
-          <strong>认识甘肃药投</strong>
-        </div>
-        <div>
-          <span>收集 6 个</span>
-          <strong>解锁宣肺产品</strong>
-        </div>
-        <div>
-          <span>收集 9 个</span>
-          <strong>生成祝福卡</strong>
-        </div>
+        <h1>接住端午安康</h1>
+        <p class="subtitle">轻触飘落的祝福签，收集清润心意与节日问候。</p>
       </div>
       <div class="product-altar">
         <img class="deco deco-zongzi" src="./assets/zongzi.svg" alt="">
@@ -54,23 +40,20 @@
         </div>
       </div>
       <button class="primary-action" id="startBtn" type="button">
-        <span>开始接福包</span>
-        <small>点红包 · 解锁企业宣传卡</small>
+        <span>触摸开始</span>
+        <small>45 秒祝福收集</small>
       </button>
       <div class="gesture-hint">
         <span class="tap-ring"></span>
-        <span>站在屏幕前，点中掉落红包</span>
+        <span>点一点屏幕上掉落的祝福</span>
       </div>
     </section>
 
     <section class="screen game-screen" id="gameScreen">
-      <div class="game-logo">
-        <img src="./assets/gansu-yaotou-logo.png" alt="甘肃药业投资集团有限公司">
-      </div>
       <div class="topbar">
         <div>
-          <span class="metric-label">红包</span>
-          <strong><span id="packetText">0</span>个</strong>
+          <span class="metric-label">祝福值</span>
+          <strong id="scoreText">0</strong>
         </div>
         <div>
           <span class="metric-label">剩余</span>
@@ -78,22 +61,17 @@
         </div>
       </div>
       <div class="game-title">
-        <p>触摸收集红包</p>
-        <h2>解锁药投端午礼</h2>
+        <p>触摸收集</p>
+        <h2>端午安康祝福签</h2>
       </div>
       <div class="playfield" id="playfield" aria-live="polite"></div>
-      <div class="unlock-card" id="unlockCard">
-        <span id="unlockKicker">企业名片</span>
-        <strong id="unlockTitle">甘肃药投</strong>
-        <p id="unlockText">核心产品：宣肺止嗽合剂、元胡止痛滴丸。</p>
-      </div>
       <div class="collection-panel">
         <div class="collection-copy">
-          <span>当前目标</span>
-          <strong id="blessingText">收集 3 个红包</strong>
+          <span>已点亮</span>
+          <strong id="blessingText">清润安康</strong>
         </div>
-        <div class="milestone-track" id="dots" aria-hidden="true">
-          <i data-label="3"></i><i data-label="6"></i><i data-label="9"></i>
+        <div class="collection-dots" id="dots" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i>
         </div>
       </div>
       <div class="tip-card" id="tipCard">
@@ -104,16 +82,13 @@
 
     <section class="screen result-screen" id="resultScreen">
       <div class="result-bg"></div>
-      <div class="result-logo">
-        <img src="./assets/gansu-yaotou-logo.png" alt="甘肃药业投资集团有限公司">
-      </div>
-      <p class="eyebrow">端午企业宣传互动</p>
-      <h2>药投端午福包已解锁</h2>
+      <p class="eyebrow">宣肺止嗽合剂</p>
+      <h2>端午安康祝福已送达</h2>
       <div class="result-card">
         <img src="./assets/xuanfei-product-cutout.png" alt="宣肺止嗽合剂产品宣传图" width="765" height="535" loading="lazy">
         <div class="result-score">
-          <span>本次收集红包</span>
-          <strong><span id="finalScore">0</span>个</strong>
+          <span>本次收集祝福值</span>
+          <strong id="finalScore">0</strong>
         </div>
         <p id="resultCopy">愿清风入怀，粽香常在，工作顺遂，身体安康。</p>
       </div>

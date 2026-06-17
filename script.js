@@ -6,7 +6,6 @@ const againBtn = document.getElementById("againBtn");
 const idleBtn = document.getElementById("idleBtn");
 const playfield = document.getElementById("playfield");
 const scoreText = document.getElementById("scoreText");
-const packetText = document.getElementById("packetText");
 const finalScore = document.getElementById("finalScore");
 const timeText = document.getElementById("timeText");
 const tipCard = document.getElementById("tipCard");
@@ -14,53 +13,25 @@ const tipKind = document.getElementById("tipKind");
 const tipText = document.getElementById("tipText");
 const blessingText = document.getElementById("blessingText");
 const resultCopy = document.getElementById("resultCopy");
-const unlockCard = document.getElementById("unlockCard");
-const unlockKicker = document.getElementById("unlockKicker");
-const unlockTitle = document.getElementById("unlockTitle");
-const unlockText = document.getElementById("unlockText");
 const dots = [...document.querySelectorAll("#dots i")];
 
 const GAME_SECONDS = 45;
 const blessings = [
-  { label: "药投福包", kind: "红包", copy: "收下甘肃药投的端午祝福。", score: 1, type: "packet", asset: "./assets/red-packet.svg" },
-  { label: "企业名片", kind: "企业宣传", copy: "甘肃药投：立足陇药资源，服务中医药产业发展。", score: 1, type: "packet", asset: "./assets/red-packet.svg" },
-  { label: "产品福包", kind: "产品宣传", copy: "宣肺止嗽合剂：产品宣传素材已解锁。", score: 1, type: "product", asset: "./assets/xuanfei-product-cutout.png" },
-  { label: "艾草安康", kind: "端午习俗", copy: "端午悬艾，寄托安康顺遂的节日心愿。", score: 1, type: "leaf", asset: "./assets/mugwort.svg" },
-  { label: "粽香有礼", kind: "端午习俗", copy: "粽香传情，把节日问候送到屏幕前。", score: 1, type: "zongzi", asset: "./assets/zongzi.svg" },
-  { label: "祝福签", kind: "互动奖励", copy: "继续收集红包，解锁完整企业祝福卡。", score: 1, type: "paper", asset: "./assets/blessing-card.svg" }
-];
-
-const milestones = [
-  {
-    count: 3,
-    kicker: "企业名片已解锁",
-    title: "甘肃药投",
-    text: "核心产品：宣肺止嗽合剂、元胡止痛滴丸。",
-    target: "继续收集 6 个红包"
-  },
-  {
-    count: 6,
-    kicker: "产品名片已解锁",
-    title: "宣肺止嗽合剂",
-    text: "端午安康场景下的产品宣传互动已完成露出。",
-    target: "继续收集 9 个红包"
-  },
-  {
-    count: 9,
-    kicker: "祝福卡已生成",
-    title: "端午安康",
-    text: "企业形象、产品信息、节日祝福已完成闭环展示。",
-    target: "祝福已集齐"
-  }
+  { label: "端午安康", kind: "祝福签", copy: "粽香入夏，愿工作顺遂，身心安康。", score: 8, type: "paper", asset: "./assets/blessing-card.svg" },
+  { label: "清润守护", kind: "产品提示", copy: "宣肺止嗽合剂产品宣传素材已加入本次互动展示。", score: 12, type: "product", asset: "./assets/xuanfei-product-cutout.png" },
+  { label: "艾草纳福", kind: "端午习俗", copy: "端午悬艾，寄托避秽纳福、平安顺遂的节日心愿。", score: 7, type: "leaf", asset: "./assets/mugwort.svg" },
+  { label: "粽香有礼", kind: "端午习俗", copy: "一枚粽子，一份心意，愿端午安康常在。", score: 7, type: "zongzi", asset: "./assets/zongzi.svg" },
+  { label: "香囊寄意", kind: "节日祝福", copy: "一枚香囊，一份关怀，愿清风常伴。", score: 7, type: "sachet", asset: "./assets/sachet.svg" },
+  { label: "药香传承", kind: "知识科普", copy: "中医药文化重在传承，也重在用更亲近的方式被看见。", score: 10, type: "paper", asset: "./assets/blessing-card.svg" },
+  { label: "甘味好礼", kind: "产品宣传", copy: "把节日问候和产品形象结合，让广告机成为互动展示窗口。", score: 10, type: "product", asset: "./assets/xuanfei-product-cutout.png" }
 ];
 
 let score = 0;
-let packets = 0;
 let timeLeft = GAME_SECONDS;
 let spawnTimer = 0;
 let clockTimer = 0;
 let tipTimer = 0;
-let unlockTimer = 0;
+let litCount = 0;
 let running = false;
 
 function showScreen(screen) {
@@ -70,21 +41,18 @@ function showScreen(screen) {
 
 function resetGame() {
   score = 0;
-  packets = 0;
   timeLeft = GAME_SECONDS;
+  litCount = 0;
   running = false;
-  if (scoreText) scoreText.textContent = "0";
-  packetText.textContent = "0";
+  scoreText.textContent = "0";
   timeText.textContent = String(GAME_SECONDS);
-  blessingText.textContent = "收集 3 个红包";
+  blessingText.textContent = "清润安康";
   dots.forEach(dot => dot.classList.remove("is-lit"));
   playfield.innerHTML = "";
   tipCard.classList.remove("is-visible");
-  unlockCard.classList.remove("is-visible");
   clearInterval(spawnTimer);
   clearInterval(clockTimer);
   clearTimeout(tipTimer);
-  clearTimeout(unlockTimer);
 }
 
 function startGame() {
@@ -106,12 +74,10 @@ function endGame() {
   clearInterval(clockTimer);
   clearTimeout(tipTimer);
   playfield.innerHTML = "";
-  finalScore.textContent = String(packets);
-  resultCopy.textContent = packets >= 9
-    ? "你已集齐企业名片、产品名片和端午祝福卡。甘肃药投祝您端午安康，工作顺遂。"
-    : packets >= 6
-      ? "你已解锁宣肺止嗽合剂产品名片。继续收集红包，可生成完整端午祝福卡。"
-      : "你已收到甘肃药投端午福包。继续参与，可解锁更多产品宣传内容。";
+  finalScore.textContent = String(score);
+  resultCopy.textContent = score >= 160
+    ? "祝福满屏，清润入夏。愿每一次触摸，都把产品记忆和节日心意送到眼前。"
+    : "愿清风入怀，粽香常在，工作顺遂，身体安康。";
   showScreen(resultScreen);
 }
 
@@ -122,7 +88,7 @@ function spawnItem() {
   node.type = "button";
   node.className = `falling ${item.type}`;
   node.style.left = `${8 + Math.random() * 74}%`;
-  node.style.animationDuration = `${4.6 + Math.random() * 2.1}s`;
+  node.style.animationDuration = `${5.2 + Math.random() * 2.8}s`;
   node.style.setProperty("--drift", `${-7 + Math.random() * 14}vw`);
   node.style.setProperty("--rot-start", `${-18 + Math.random() * 36}deg`);
   node.style.setProperty("--rot-end", `${120 + Math.random() * 180}deg`);
@@ -154,35 +120,23 @@ function collectItem(event) {
   const node = event.currentTarget;
   const add = Number(node.dataset.score || 0);
   score += add;
-  packets += 1;
-  if (scoreText) scoreText.textContent = String(score);
-  packetText.textContent = String(packets);
+  scoreText.textContent = String(score);
   blessingText.textContent = node.dataset.label;
   node.classList.add("is-hit");
-  updateMilestones();
+  lightProgress();
   showTip(node.dataset.kind, node.dataset.copy);
   setTimeout(() => node.remove(), 360);
 }
 
-function updateMilestones() {
+function lightProgress() {
+  litCount = Math.min(dots.length, litCount + 1);
   dots.forEach((dot, index) => {
-    dot.classList.toggle("is-lit", packets >= milestones[index].count);
+    dot.classList.toggle("is-lit", index < litCount);
   });
-  const achieved = milestones.filter(item => packets >= item.count).pop();
-  const next = milestones.find(item => packets < item.count);
-  blessingText.textContent = next ? `收集 ${next.count} 个红包` : "祝福已集齐";
-  if (achieved && packets === achieved.count) {
-    showUnlock(achieved);
+  if (litCount === dots.length) {
+    litCount = 0;
+    setTimeout(() => dots.forEach(dot => dot.classList.remove("is-lit")), 260);
   }
-}
-
-function showUnlock(item) {
-  unlockKicker.textContent = item.kicker;
-  unlockTitle.textContent = item.title;
-  unlockText.textContent = item.text;
-  unlockCard.classList.add("is-visible");
-  clearTimeout(unlockTimer);
-  unlockTimer = setTimeout(() => unlockCard.classList.remove("is-visible"), 3600);
 }
 
 function showTip(kind, copy) {
