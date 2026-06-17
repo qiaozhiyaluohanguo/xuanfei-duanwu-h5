@@ -18,12 +18,12 @@ const dots = [...document.querySelectorAll("#dots i")];
 const GAME_SECONDS = 45;
 const blessings = [
   { label: "端午安康", kind: "祝福签", copy: "粽香入夏，愿工作顺遂，身心安康。", score: 8, type: "paper", asset: "./assets/blessing-card.svg" },
-  { label: "清润守护", kind: "产品提示", copy: "宣肺止嗽合剂产品宣传素材已加入本次互动展示。", score: 12, type: "product", asset: "./assets/xuanfei-bottle.png" },
+  { label: "清润守护", kind: "产品提示", copy: "宣肺止嗽合剂产品宣传素材已加入本次互动展示。", score: 12, type: "product", asset: "./assets/xuanfei-bottle.webp" },
   { label: "艾草纳福", kind: "端午习俗", copy: "端午悬艾，寄托避秽纳福、平安顺遂的节日心愿。", score: 7, type: "leaf", asset: "./assets/mugwort.svg" },
   { label: "粽香有礼", kind: "端午习俗", copy: "一枚粽子，一份心意，愿端午安康常在。", score: 7, type: "zongzi", asset: "./assets/zongzi.svg" },
   { label: "香囊寄意", kind: "节日祝福", copy: "一枚香囊，一份关怀，愿清风常伴。", score: 7, type: "sachet", asset: "./assets/sachet.svg" },
   { label: "药香传承", kind: "知识科普", copy: "中医药文化重在传承，也重在用更亲近的方式被看见。", score: 10, type: "paper", asset: "./assets/blessing-card.svg" },
-  { label: "甘味好礼", kind: "产品宣传", copy: "把节日问候和产品形象结合，让广告机成为互动展示窗口。", score: 10, type: "product", asset: "./assets/xuanfei-bottle.png" }
+  { label: "甘味好礼", kind: "产品宣传", copy: "把节日问候和产品形象结合，让广告机成为互动展示窗口。", score: 10, type: "product", asset: "./assets/xuanfei-bottle.webp" }
 ];
 
 let score = 0;
