@@ -24,7 +24,7 @@ const GAME_SECONDS = 45;
 const blessings = [
   { label: "药投福包", kind: "红包", copy: "收下甘肃药投的端午祝福。", score: 1, type: "packet", asset: "./assets/red-packet.svg" },
   { label: "企业名片", kind: "企业宣传", copy: "甘肃药投：立足陇药资源，服务中医药产业发展。", score: 1, type: "packet", asset: "./assets/red-packet.svg" },
-  { label: "产品福包", kind: "产品宣传", copy: "宣肺止嗽合剂：产品宣传素材已解锁。", score: 1, type: "product", asset: "./assets/xuanfei-bottle.webp" },
+  { label: "产品福包", kind: "产品宣传", copy: "宣肺止嗽合剂：产品宣传素材已解锁。", score: 1, type: "product", asset: "./assets/xuanfei-product-cutout.png" },
   { label: "艾草安康", kind: "端午习俗", copy: "端午悬艾，寄托安康顺遂的节日心愿。", score: 1, type: "leaf", asset: "./assets/mugwort.svg" },
   { label: "粽香有礼", kind: "端午习俗", copy: "粽香传情，把节日问候送到屏幕前。", score: 1, type: "zongzi", asset: "./assets/zongzi.svg" },
   { label: "祝福签", kind: "互动奖励", copy: "继续收集红包，解锁完整企业祝福卡。", score: 1, type: "paper", asset: "./assets/blessing-card.svg" }
