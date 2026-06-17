@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <title>接住宣肺端午安康</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="stage" id="stage" aria-label="接住宣肺端午安康互动页面">
+    <section class="screen start-screen is-active" id="startScreen">
+      <div class="ambient ambient-a"></div>
+      <div class="ambient ambient-b"></div>
+      <div class="brand-row">
+        <span class="seal">甘肃药投</span>
+        <span class="line"></span>
+        <span>端午产品宣传互动试验</span>
+      </div>
+      <div class="hero-copy">
+        <p class="eyebrow">宣肺止嗽合剂</p>
+        <h1>接住端午安康</h1>
+        <p class="subtitle">轻触飘落的祝福签，收集清润心意与节日问候。</p>
+      </div>
+      <div class="product-altar">
+        <img class="deco deco-zongzi" src="./assets/zongzi.svg" alt="">
+        <img class="deco deco-mugwort" src="./assets/mugwort.svg" alt="">
+        <img class="deco deco-sachet" src="./assets/sachet.svg" alt="">
+        <div class="poster-frame">
+          <img src="./assets/xuanfei-poster.jpg" alt="宣肺止嗽合剂端午宣传海报">
+        </div>
+        <div class="bottle-card">
+          <img src="./assets/xuanfei-bottle.png" alt="宣肺止嗽合剂产品图">
+        </div>
+      </div>
+      <button class="primary-action" id="startBtn" type="button">
+        <span>触摸开始</span>
+        <small>45 秒祝福收集</small>
+      </button>
+      <div class="gesture-hint">
+        <span class="tap-ring"></span>
+        <span>点一点屏幕上掉落的祝福</span>
+      </div>
+    </section>
+
+    <section class="screen game-screen" id="gameScreen">
+      <div class="topbar">
+        <div>
+          <span class="metric-label">祝福值</span>
+          <strong id="scoreText">0</strong>
+        </div>
+        <div>
+          <span class="metric-label">剩余</span>
+          <strong><span id="timeText">45</span>s</strong>
+        </div>
+      </div>
+      <div class="game-title">
+        <p>触摸收集</p>
+        <h2>端午安康祝福签</h2>
+      </div>
+      <div class="playfield" id="playfield" aria-live="polite"></div>
+      <div class="collection-panel">
+        <div class="collection-copy">
+          <span>已点亮</span>
+          <strong id="blessingText">清润安康</strong>
+        </div>
+        <div class="collection-dots" id="dots" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+      <div class="tip-card" id="tipCard">
+        <span id="tipKind">祝福签</span>
+        <p id="tipText">端午佩艾，愿你安康顺遂。</p>
+      </div>
+    </section>
+
+    <section class="screen result-screen" id="resultScreen">
+      <div class="result-bg"></div>
+      <p class="eyebrow">宣肺止嗽合剂</p>
+      <h2>端午安康祝福已送达</h2>
+      <div class="result-card">
+        <img src="./assets/xuanfei-family.jpg" alt="宣肺止嗽合剂产品宣传图">
+        <div class="result-score">
+          <span>本次收集祝福值</span>
+          <strong id="finalScore">0</strong>
+        </div>
+        <p id="resultCopy">愿清风入怀，粽香常在，工作顺遂，身体安康。</p>
+      </div>
+      <div class="result-actions">
+        <button class="primary-action compact" id="againBtn" type="button">再接一次祝福</button>
+        <button class="ghost-action" id="idleBtn" type="button">回到展示页</button>
+      </div>
+    </section>
+  </main>
+  <script src="./script.js"></script>
+</body>
+</html>

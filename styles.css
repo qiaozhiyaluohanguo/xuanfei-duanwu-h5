@@ -1,0 +1,639 @@
+:root {
+  --jade: #0f5b48;
+  --jade-deep: #073d35;
+  --leaf: #2f8b68;
+  --gold: #d8ad55;
+  --gold-light: #f4d98d;
+  --rice: #fff8e7;
+  --paper: #f8f1dc;
+  --ink: #16251f;
+  --cinnabar: #b63d2f;
+  --shadow: 0 34px 90px rgba(4, 38, 31, .42);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #061d19;
+  color: var(--rice);
+  font-family: "Songti SC", "STSong", "Noto Serif SC", "PingFang SC", serif;
+}
+
+button {
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.stage {
+  position: relative;
+  width: min(100vw, calc(100vh * 9 / 16));
+  height: min(100vh, calc(100vw * 16 / 9));
+  margin: auto;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(244, 217, 141, .22), transparent 30%),
+    linear-gradient(180deg, #114f40 0%, #0a332e 42%, #061d19 100%);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .06);
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: none;
+  padding: 5.2vh 5.4vw;
+}
+
+.screen.is-active {
+  display: block;
+}
+
+.start-screen,
+.result-screen {
+  isolation: isolate;
+}
+
+.start-screen::before,
+.game-screen::before,
+.result-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, .025) 1px, transparent 1px);
+  background-size: 76px 76px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, .75), transparent 84%);
+}
+
+.ambient {
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(244, 217, 141, .28);
+  transform: rotate(45deg);
+  opacity: .8;
+}
+
+.ambient-a {
+  width: 48vh;
+  height: 48vh;
+  top: 7vh;
+  right: -22vh;
+}
+
+.ambient-b {
+  width: 32vh;
+  height: 32vh;
+  bottom: 18vh;
+  left: -18vh;
+  border-color: rgba(255, 248, 231, .18);
+}
+
+.brand-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5vh;
+  height: 4.2vh;
+  color: rgba(255, 248, 231, .76);
+  font-size: clamp(15px, 1.34vh, 34px);
+  letter-spacing: 0;
+}
+
+.seal {
+  display: inline-grid;
+  place-items: center;
+  width: 8.4vh;
+  height: 3.8vh;
+  border: 1px solid rgba(244, 217, 141, .65);
+  color: var(--gold-light);
+  font-weight: 700;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(244, 217, 141, .55), transparent);
+}
+
+.hero-copy {
+  margin-top: 7.2vh;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--gold-light);
+  font-size: clamp(18px, 1.7vh, 42px);
+  letter-spacing: 0;
+  font-weight: 700;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1.04;
+}
+
+h1 {
+  margin-top: 1.2vh;
+  font-size: clamp(54px, 7.8vh, 188px);
+  text-shadow: 0 18px 42px rgba(0, 0, 0, .22);
+}
+
+.subtitle {
+  width: 80%;
+  margin: 2.2vh auto 0;
+  color: rgba(255, 248, 231, .82);
+  font-size: clamp(18px, 1.9vh, 44px);
+  line-height: 1.55;
+}
+
+.product-altar {
+  position: relative;
+  height: 43vh;
+  margin-top: 5.5vh;
+}
+
+.deco {
+  position: absolute;
+  z-index: 0;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 28px rgba(4, 31, 25, .35));
+  pointer-events: none;
+}
+
+.deco-zongzi {
+  width: 13vh;
+  height: 13vh;
+  left: 2%;
+  bottom: 9.2vh;
+  transform: rotate(-16deg);
+}
+
+.deco-mugwort {
+  width: 16vh;
+  height: 16vh;
+  right: -3%;
+  top: 10vh;
+  opacity: .9;
+  transform: rotate(17deg);
+}
+
+.deco-sachet {
+  width: 10vh;
+  height: 10vh;
+  left: 10%;
+  top: 5vh;
+  transform: rotate(-8deg);
+}
+
+.poster-frame {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 0;
+  width: 47%;
+  height: 40vh;
+  transform: translateX(-50%);
+  overflow: hidden;
+  border: 1px solid rgba(244, 217, 141, .72);
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.poster-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.poster-frame::after {
+  content: "";
+  position: absolute;
+  inset: 1.1vh;
+  border: 1px solid rgba(15, 91, 72, .2);
+  pointer-events: none;
+}
+
+.bottle-card {
+  position: absolute;
+  z-index: 3;
+  right: 4%;
+  bottom: 1.4vh;
+  width: 25%;
+  height: 17vh;
+  display: grid;
+  place-items: center;
+  padding: 1.4vh;
+  background: rgba(255, 248, 231, .94);
+  box-shadow: 0 22px 50px rgba(5, 32, 26, .32);
+  border: 1px solid rgba(216, 173, 85, .82);
+}
+
+.bottle-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.primary-action,
+.ghost-action {
+  min-height: 7.2vh;
+  border-radius: 8px;
+}
+
+.primary-action {
+  position: absolute;
+  left: 50%;
+  bottom: 12.5vh;
+  width: 64%;
+  transform: translateX(-50%);
+  display: grid;
+  place-items: center;
+  color: #183024;
+  background: linear-gradient(180deg, #ffe8a6, #d5a23e);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, .28), inset 0 1px rgba(255, 255, 255, .52);
+}
+
+.primary-action span,
+.primary-action {
+  font-size: clamp(24px, 2.6vh, 64px);
+  font-weight: 800;
+}
+
+.primary-action small {
+  margin-top: .4vh;
+  font-size: clamp(12px, 1.16vh, 28px);
+  font-family: "PingFang SC", sans-serif;
+  color: rgba(24, 48, 36, .72);
+}
+
+.gesture-hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2vh;
+  color: rgba(255, 248, 231, .78);
+  font-size: clamp(15px, 1.5vh, 36px);
+  font-family: "PingFang SC", sans-serif;
+}
+
+.tap-ring {
+  width: 2.3vh;
+  height: 2.3vh;
+  border-radius: 50%;
+  border: 2px solid var(--gold-light);
+  box-shadow: 0 0 0 0 rgba(244, 217, 141, .38);
+  animation: pulse 1.55s infinite;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 2vh;
+}
+
+.topbar > div {
+  width: 28%;
+  min-height: 7vh;
+  display: grid;
+  align-content: center;
+  padding: 1vh 1.7vh;
+  border: 1px solid rgba(244, 217, 141, .42);
+  background: rgba(6, 29, 25, .36);
+  backdrop-filter: blur(10px);
+}
+
+.metric-label {
+  color: rgba(255, 248, 231, .7);
+  font-size: clamp(12px, 1.2vh, 28px);
+  font-family: "PingFang SC", sans-serif;
+}
+
+.topbar strong {
+  margin-top: .2vh;
+  color: var(--gold-light);
+  font-size: clamp(28px, 3.6vh, 86px);
+  line-height: 1;
+}
+
+.game-title {
+  margin-top: 4vh;
+  text-align: center;
+}
+
+.game-title p {
+  margin: 0 0 .8vh;
+  color: rgba(255, 248, 231, .7);
+  font-size: clamp(15px, 1.45vh, 34px);
+}
+
+.game-title h2,
+.result-screen h2 {
+  font-size: clamp(42px, 5.3vh, 128px);
+}
+
+.playfield {
+  position: absolute;
+  inset: 18vh 0 16vh;
+  overflow: hidden;
+}
+
+.falling {
+  position: absolute;
+  top: -9vh;
+  left: 0;
+  width: 9.2vh;
+  height: 9.2vh;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  border: 1px solid rgba(244, 217, 141, .76);
+  background: transparent;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .26);
+  font-family: "PingFang SC", sans-serif;
+  font-size: clamp(14px, 1.26vh, 30px);
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.22;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.falling.leaf {
+  border: 0;
+  box-shadow: none;
+  color: #fff8e7;
+}
+
+.falling.zongzi,
+.falling.sachet,
+.falling.paper {
+  border: 0;
+  box-shadow: none;
+}
+
+.falling.sachet {
+  color: #fff8e7;
+}
+
+.falling.product {
+  width: 10vh;
+  height: 12vh;
+  padding: .8vh;
+  background: rgba(255, 248, 231, .96);
+  border: 1px solid rgba(216, 173, 85, .78);
+}
+
+.falling img.item-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 22px rgba(4, 31, 25, .34));
+}
+
+.falling.product img.item-art {
+  position: static;
+  width: 100%;
+  height: 100%;
+  filter: none;
+}
+
+.item-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 72%;
+  transform: translate(-50%, -50%);
+  color: var(--ink);
+  font-size: clamp(12px, 1.12vh, 28px);
+  line-height: 1.18;
+  text-align: center;
+  font-weight: 900;
+}
+
+.falling.leaf .item-label,
+.falling.zongzi .item-label,
+.falling.sachet .item-label {
+  display: none;
+}
+
+.falling.is-hit {
+  animation: collect .38s ease forwards;
+  pointer-events: none;
+}
+
+.collection-panel {
+  position: absolute;
+  left: 5.4vw;
+  right: 5.4vw;
+  bottom: 4.2vh;
+  min-height: 9vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.6vh;
+  border: 1px solid rgba(244, 217, 141, .44);
+  background: rgba(6, 29, 25, .48);
+  backdrop-filter: blur(16px);
+}
+
+.collection-copy span {
+  display: block;
+  color: rgba(255, 248, 231, .68);
+  font-family: "PingFang SC", sans-serif;
+  font-size: clamp(12px, 1.18vh, 28px);
+}
+
+.collection-copy strong {
+  display: block;
+  margin-top: .4vh;
+  color: var(--gold-light);
+  font-size: clamp(22px, 2.6vh, 62px);
+}
+
+.collection-dots {
+  display: flex;
+  gap: .9vh;
+}
+
+.collection-dots i {
+  width: 1.6vh;
+  height: 1.6vh;
+  border-radius: 50%;
+  border: 1px solid rgba(244, 217, 141, .5);
+  background: rgba(255, 248, 231, .16);
+}
+
+.collection-dots i.is-lit {
+  background: var(--gold-light);
+  box-shadow: 0 0 22px rgba(244, 217, 141, .72);
+}
+
+.tip-card {
+  position: absolute;
+  left: 8vw;
+  right: 8vw;
+  bottom: 15.4vh;
+  min-height: 8vh;
+  padding: 1.6vh 2vh;
+  border: 1px solid rgba(244, 217, 141, .52);
+  background: rgba(255, 248, 231, .95);
+  color: var(--ink);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, .28);
+  opacity: 0;
+  transform: translateY(1.4vh);
+  transition: opacity .25s ease, transform .25s ease;
+  pointer-events: none;
+}
+
+.tip-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tip-card span {
+  color: var(--cinnabar);
+  font-size: clamp(12px, 1.16vh, 28px);
+  font-family: "PingFang SC", sans-serif;
+  font-weight: 800;
+}
+
+.tip-card p {
+  margin: .6vh 0 0;
+  font-size: clamp(17px, 1.64vh, 40px);
+  line-height: 1.42;
+  font-weight: 700;
+}
+
+.result-screen {
+  text-align: center;
+}
+
+.result-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(216, 173, 85, .24), transparent 31%),
+    linear-gradient(180deg, #114f40, #061d19);
+}
+
+.result-screen .eyebrow {
+  margin-top: 5vh;
+}
+
+.result-screen h2 {
+  width: 88%;
+  margin: 1.6vh auto 0;
+}
+
+.result-card {
+  width: 78%;
+  margin: 3.2vh auto 0;
+  padding: 1.6vh;
+  border: 1px solid rgba(244, 217, 141, .58);
+  background: rgba(255, 248, 231, .96);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.result-card img {
+  width: 100%;
+  height: 26vh;
+  object-fit: cover;
+  border: 1px solid rgba(15, 91, 72, .22);
+}
+
+.result-score {
+  margin-top: 1.35vh;
+}
+
+.result-score span {
+  display: block;
+  color: rgba(22, 37, 31, .62);
+  font-family: "PingFang SC", sans-serif;
+  font-size: clamp(14px, 1.28vh, 32px);
+}
+
+.result-score strong {
+  display: block;
+  margin-top: .4vh;
+  color: var(--cinnabar);
+  font-size: clamp(40px, 4.6vh, 112px);
+  line-height: 1;
+}
+
+.result-card p {
+  width: 88%;
+  margin: 1.2vh auto .4vh;
+  font-size: clamp(16px, 1.48vh, 36px);
+  line-height: 1.42;
+}
+
+.result-actions {
+  position: absolute;
+  left: 8vw;
+  right: 8vw;
+  bottom: 4.5vh;
+  display: grid;
+  gap: 1.4vh;
+}
+
+.result-actions .primary-action {
+  position: static;
+  width: 100%;
+  transform: none;
+}
+
+.ghost-action {
+  color: var(--rice);
+  background: rgba(255, 248, 231, .08);
+  border: 1px solid rgba(244, 217, 141, .46);
+  font-size: clamp(18px, 1.7vh, 42px);
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(244, 217, 141, .38); }
+  70% { box-shadow: 0 0 0 1.8vh rgba(244, 217, 141, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(244, 217, 141, 0); }
+}
+
+@keyframes fall {
+  from { transform: translate3d(0, 0, 0) rotate(var(--rot-start)); }
+  to { transform: translate3d(var(--drift), 106vh, 0) rotate(var(--rot-end)); }
+}
+
+@keyframes collect {
+  to {
+    opacity: 0;
+    transform: scale(1.38) rotate(8deg);
+  }
+}
+
+@media (max-aspect-ratio: 9 / 16) {
+  .stage {
+    width: 100vw;
+    height: 100vh;
+  }
+}
